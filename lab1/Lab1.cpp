@@ -58,7 +58,16 @@ int input5CharsConvertToInt()
 }
 int convertBinarytoDecimal(int binaryNumber)
 {
-	return 0;
+	int sum = 0;
+	int index = 0;
+	while (binaryNumber > 0) {
+		int lastDigit = binaryNumber % 10;
+		binaryNumber/=10;
+
+		sum += lastDigit * pow(2, index);
+		index++;
+	}
+	return sum;
 }
 void drawRightAngledTriangle()
 {
