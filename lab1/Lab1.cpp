@@ -34,7 +34,14 @@ bool isAPalindrome(int testNumber)
 }
 bool isAPrimeNumber(int numbertoTest)
 {
-	return false;
+	if (numbertoTest <= 1) return false;
+
+	for (int index = 2; index <= numbertoTest / 2; index++) {
+		if (numbertoTest % index == 0) {
+			return false;
+		}
+	}
+	return true;
 }
 int input5CharsConvertToInt()
 {
