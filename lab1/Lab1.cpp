@@ -53,6 +53,12 @@ int input5CharsConvertToInt()
 		//check if its a digit.
 		//do something
 
+		if (inputChar >= '0' && inputChar <= '9') {
+			returnInt *= 10;
+			returnInt += inputChar - '0';
+		} else {
+			return 0;
+		}
 	}
 	return returnInt;
 }
