@@ -18,11 +18,19 @@ bool isLeapYear(int year)
 
 int Reversed(int testNumber)
 {
-	return 0;
+	int reversedNumber = 0;
+	while (testNumber > 0) {
+		int lastDigit = testNumber % 10;
+		reversedNumber*=10;
+		reversedNumber+=lastDigit;
+		testNumber/=10;
+	}
+	return reversedNumber;
 }
 bool isAPalindrome(int testNumber)
 {
-	return false;
+	int reversedNumber = Reversed(testNumber);
+	return reversedNumber == testNumber;
 }
 bool isAPrimeNumber(int numbertoTest)
 {
