@@ -77,7 +77,12 @@ int convertBinarytoDecimal(int binaryNumber)
 }
 void drawRightAngledTriangle()
 {
-
+	for (int indexRows = 0; indexRows < 4; indexRows++) {
+		for (int indexColumns = 0; indexColumns <= indexRows; indexColumns++) {
+			printf("A");
+		}
+		printf("\n");
+	}
 }
 void drawIsocelesTriangle()
 {
