@@ -86,7 +86,18 @@ void drawRightAngledTriangle()
 }
 void drawIsocelesTriangle()
 {
-
+	for (int indexRows = 0; indexRows < 7; indexRows++) {
+		if (indexRows < 4) {
+			for (int indexColumns = 0; indexColumns <= indexRows; indexColumns++) {
+				printf("A");
+			}
+		} else {
+			for (int indexColumns = indexRows; indexColumns < 7; indexColumns++) {
+				printf("A");
+			}
+		}
+		printf("\n");
+	}
 }
 void drawIsocelesTriangle2()
 {
