@@ -208,9 +208,13 @@ void reverse(int size, int arr[])
 		arr[size - 1 - index] = temp1;
 	}
 }
-int rotateLeft(int size, int arr[])
+void rotateLeft(int size, int arr[])
 {
-	return -1;
+	int firstElement = arr[0];
+	for (int index = 0; index < size; index++) {
+		arr[index] = arr[index + 1];
+	}
+	arr[size - 1] = firstElement;
 }
 bool twoMovies(int flightLength, int movieLengths[], int size)
 {
@@ -383,4 +387,11 @@ int main()
 	reverse(3, arr6);
 	printArray(3, arr6);
 
+	std::cout << "Rotate left" << std::endl;
+	rotateLeft(3, arr6);
+	printArray(3, arr6);
+	rotateLeft(3, arr6);
+	printArray(3, arr6);
+	rotateLeft(3, arr6);
+	printArray(3, arr6);
 }
