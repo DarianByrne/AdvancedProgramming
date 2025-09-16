@@ -167,8 +167,13 @@ bool deleteElement(int& size, int& count, int arr[], int deleteIndex)
 }
 int frequencyCount(int size, int arr[], int value)
 {
-
-	return 0;
+	int frequency = 0;
+	for (int index = 0; index < size; index++) {
+		if (arr[index] == value) {
+			frequency++;
+		}
+	}
+	return frequency;
 }
 int countDuplicates(int size, int arr[])
 {
@@ -337,4 +342,9 @@ int main()
 	std::cout << "Delete element" << std::endl;
 	int deleteIndex = 2;
 	deleteElement(size2, count, arr3, deleteIndex);
+
+	std::cout << "Frequency count" << std::endl;
+	int arr4[] = {1,2,2,2,3};
+	int frequency = frequencyCount(5, arr4, 2);
+	std::cout << frequency << std::endl;
 }
