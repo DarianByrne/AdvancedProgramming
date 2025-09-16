@@ -229,9 +229,27 @@ bool twoMovies(int flightLength, int movieLengths[], int size)
 	}
 	return false;
 }
-int wordCounter(int size, char characters[])
+int wordCounter(char characters[])
 {
-	return 0;
+	int index = 0;
+	int words = 0;
+	while (characters[index] != '\0') {
+		if (characters[index] == ' ') {
+			if (index > 0) {
+				if (characters[index - 1] != ' ') {
+					words++;
+				}
+			} else {
+				words++;
+			}
+		} else if (characters[index] > 'z' || characters[index] < 'A') {
+			return 0;
+		}
+
+		index++;
+	}
+	words++;
+	return words;
 }
 // Test for Questions 1 to 8
 int main()
@@ -415,4 +433,9 @@ int main()
 	else {
 		std::cout << "no" << std::endl;
 	}
+
+	std::cout << "Word counter" << std::endl;
+	char characters[] = {'H', 'e', 'l', 'l', 'o', ' ', ' ', 'W', 'o', 'r', 'l', 'd', ' ', 'I', ' ', 'a', 'm', ' ', 'h', 'e', 'r', 'e', '\0'};
+	int words = wordCounter(characters);
+	std::cout << words << std::endl;
 }
