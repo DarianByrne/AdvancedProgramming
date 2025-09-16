@@ -135,7 +135,9 @@ int find2ndLargest(int size, int arr[])
 }
 void copyArraytoArray(int size, int arr1[], int arr2[])
 {
-	return;
+	for (int index = 0; index < size; index++) {
+		arr2[index] = arr1[index];
+	}
 }
 bool insertElement(int& size, int& count, int arr[], int elementToInsert, int insertIndex)
 {
@@ -303,4 +305,8 @@ int main()
 	std::cout << "Find 2nd largest" << std::endl;
 	int i2ndLargest = find2ndLargest(size, arr);
 	std::cout << i2ndLargest << std::endl;
+
+	std::cout << "Copy arr1 to arr2" << std::endl;
+	int arr2[4];
+	copyArraytoArray(size, arr, arr2);
 }
