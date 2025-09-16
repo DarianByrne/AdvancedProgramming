@@ -104,6 +104,13 @@ void drawIsocelesTriangle2()
 
 }
 
+void printArray(int size, int arr[]) {
+	for (int index = 0; index < size; index++) {
+		std::cout << "<" << arr[index] << ">, ";
+	}
+
+	std::cout << std::endl;
+}
 int find(int size, int arr[], int toFind)
 {
 	int index = 0;
@@ -194,7 +201,12 @@ int countDuplicates(int size, int arr[])
 }
 void reverse(int size, int arr[])
 {
-	return;
+	for (int index = 0; index < size / 2; index++) {
+		int temp1 = arr[index];
+		int temp2 = arr[size - 1 - index];
+		arr[index] = temp2;
+		arr[size - 1 - index] = temp1;
+	}
 }
 int rotateLeft(int size, int arr[])
 {
@@ -364,4 +376,11 @@ int main()
 	int arr5[] = {1, 2, 2, 5, 5, 5, 7, 8};
 	int duplicates = countDuplicates(8, arr5);
 	std::cout << duplicates << std::endl;
+
+	std::cout << "Reverse" << std::endl;
+	int arr6[] = {1, 2, 3};
+	printArray(3, arr6);
+	reverse(3, arr6);
+	printArray(3, arr6);
+
 }
