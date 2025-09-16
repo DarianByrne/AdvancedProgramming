@@ -154,7 +154,15 @@ bool insertElement(int& size, int& count, int arr[], int elementToInsert, int in
 }
 bool deleteElement(int& size, int& count, int arr[], int deleteIndex)
 {
+	if (count <= 0) {
+		return false;
+	}
 
+	for (int index = deleteIndex; index < count; index++) {
+		arr[index] = arr[index + 1];
+	}
+	count--;
+	arr[count] = 0;
 	return true;
 }
 int frequencyCount(int size, int arr[], int value)
@@ -325,4 +333,8 @@ int main()
 	int elementToInsert = 3;
 	int insertIndex = 2;
 	insertElement(size2, count, arr3, elementToInsert, insertIndex);
+
+	std::cout << "Delete element" << std::endl;
+	int deleteIndex = 2;
+	deleteElement(size2, count, arr3, deleteIndex);
 }
