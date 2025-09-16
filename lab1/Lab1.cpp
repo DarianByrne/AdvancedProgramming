@@ -141,8 +141,16 @@ void copyArraytoArray(int size, int arr1[], int arr2[])
 }
 bool insertElement(int& size, int& count, int arr[], int elementToInsert, int insertIndex)
 {
+	if (count >= size) {
+		return false;
+	}
 
-	return false;
+	for (int index = count - 1; index >= insertIndex; index--) {
+		arr[index + 1] = arr[index];
+	}
+	arr[insertIndex] = elementToInsert;
+	count++;
+	return true;
 }
 bool deleteElement(int& size, int& count, int arr[], int deleteIndex)
 {
@@ -309,4 +317,12 @@ int main()
 	std::cout << "Copy arr1 to arr2" << std::endl;
 	int arr2[4];
 	copyArraytoArray(size, arr, arr2);
+
+	std::cout << "Insert element" << std::endl;
+	int arr3[5] = {1, 2, 4, 5};
+	int size2 = 5;
+	int count = 4;
+	int elementToInsert = 3;
+	int insertIndex = 2;
+	insertElement(size2, count, arr3, elementToInsert, insertIndex);
 }
