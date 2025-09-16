@@ -229,6 +229,9 @@ bool twoMovies(int flightLength, int movieLengths[], int size)
 	}
 	return false;
 }
+bool isLetter(char character) {
+	return (character >= 'A' && character <= 'Z') || (character >= 'a' && character <= 'z');
+}
 int wordCounter(char characters[])
 {
 	int index = 0;
@@ -242,11 +245,15 @@ int wordCounter(char characters[])
 			} else {
 				words++;
 			}
-		} else if (characters[index] > 'z' || characters[index] < 'A') {
-			return 0;
+			index++;
+		} else if (isLetter(characters[index])) {
+			index++;
+		} else {
+			words--;
+			do {
+				index++;
+			} while (characters[index] != '\0' && characters[index] != ' ');
 		}
-
-		index++;
 	}
 	words++;
 	return words;
@@ -435,7 +442,7 @@ int main()
 	}
 
 	std::cout << "Word counter" << std::endl;
-	char characters[] = {'H', 'e', 'l', 'l', 'o', ' ', ' ', 'W', 'o', 'r', 'l', 'd', ' ', 'I', ' ', 'a', 'm', ' ', 'h', 'e', 'r', 'e', '\0'};
+	char characters[] = {'H', 'e', 'l', 'l', 'o', ' ', ' ', 'W', 'o', 'r', 'l', 'd', ' ', '1', '2', '3', ' ', 'I', ' ', 'a', 'm', ' ', 'h', 'e', 'r', 'e', '\0'};
 	int words = wordCounter(characters);
 	std::cout << words << std::endl;
 }
