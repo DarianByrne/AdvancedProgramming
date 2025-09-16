@@ -218,6 +218,15 @@ void rotateLeft(int size, int arr[])
 }
 bool twoMovies(int flightLength, int movieLengths[], int size)
 {
+	for (int index = 0; index < size; index++) {
+		for (int repeatIndex = 0; repeatIndex < size; repeatIndex++) {
+			if (index != repeatIndex) {
+				if (movieLengths[index] + movieLengths[repeatIndex] == flightLength) {
+					return true;
+				}
+			}
+		}
+	}
 	return false;
 }
 int wordCounter(int size, char characters[])
@@ -394,4 +403,16 @@ int main()
 	printArray(3, arr6);
 	rotateLeft(3, arr6);
 	printArray(3, arr6);
+
+	std::cout << "Two movies" << std::endl;
+	int flightLength = 300;
+	int movieLengths[] = {120, 149, 151, 90, 130};
+	bool exactLength = twoMovies(flightLength, movieLengths, 5);
+	if (exactLength)
+	{
+		std::cout << "yes" << std::endl;
+	}
+	else {
+		std::cout << "no" << std::endl;
+	}
 }
