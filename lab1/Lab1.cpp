@@ -106,6 +106,13 @@ void drawIsocelesTriangle2()
 
 int find(int size, int arr[], int toFind)
 {
+	int index = 0;
+	while (index < size) {
+		if (arr[index] == toFind) {
+			return index;
+		}
+		index++;
+	}
 	return -1;
 }
 int find2ndLargest(int size, int arr[])
@@ -271,4 +278,11 @@ int main()
 	drawRightAngledTriangle();
 	drawIsocelesTriangle();
 
+	std::cout << "Arrays" << std::endl;
+	std::cout << "Find" << std::endl;
+	int size = 4;
+	int arr[] = {20, 30, 10, 0};
+	int toFind = 10;
+	int index = find(size, arr, toFind);
+	std::cout << index << std::endl;
 }
