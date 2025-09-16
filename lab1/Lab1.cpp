@@ -177,8 +177,20 @@ int frequencyCount(int size, int arr[], int value)
 }
 int countDuplicates(int size, int arr[])
 {
+	int arr2[size];
+	copyArraytoArray(size, arr, arr2);
 
-	return 0;
+	int duplicates = 0;
+	for (int index = 0; index < size; index++) {
+		for (int repeatIndex = 0; repeatIndex < size; repeatIndex++) {
+			if (index != repeatIndex && arr[index] == arr2[repeatIndex]) {
+				duplicates++;
+				arr2[repeatIndex] = 0;
+			}
+		}
+	}
+
+	return duplicates;
 }
 void reverse(int size, int arr[])
 {
@@ -347,4 +359,9 @@ int main()
 	int arr4[] = {1,2,2,2,3};
 	int frequency = frequencyCount(5, arr4, 2);
 	std::cout << frequency << std::endl;
+
+	std::cout << "Duplicate count" << std::endl;
+	int arr5[] = {1, 2, 2, 5, 5, 5, 7, 8};
+	int duplicates = countDuplicates(8, arr5);
+	std::cout << duplicates << std::endl;
 }
