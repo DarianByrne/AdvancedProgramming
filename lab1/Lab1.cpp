@@ -117,7 +117,21 @@ int find(int size, int arr[], int toFind)
 }
 int find2ndLargest(int size, int arr[])
 {
-	return -1;
+	if (size < 2) {
+		return -1;
+	}
+
+	int max = -1;
+	int secondMax = -1;
+	for (int index = 0; index < size; index++) {
+		if (arr[index] > max) {
+			secondMax = max;
+			max = arr[index];
+		} else if (arr[index] > secondMax && arr[index] != max) {
+			secondMax = arr[index];
+		}
+	}
+	return secondMax;
 }
 void copyArraytoArray(int size, int arr1[], int arr2[])
 {
@@ -285,4 +299,8 @@ int main()
 	int toFind = 10;
 	int index = find(size, arr, toFind);
 	std::cout << index << std::endl;
+
+	std::cout << "Find 2nd largest" << std::endl;
+	int i2ndLargest = find2ndLargest(size, arr);
+	std::cout << i2ndLargest << std::endl;
 }
