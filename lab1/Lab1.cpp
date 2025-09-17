@@ -236,26 +236,22 @@ int wordCounter(char characters[])
 {
 	int index = 0;
 	int words = 0;
+	int letterCount = 0;
+	int lastSpaceIndex = -1;
+
 	while (characters[index] != '\0') {
-		if (characters[index] == ' ') {
-			if (index > 0) {
-				if (characters[index - 1] != ' ') {
-					words++;
-				}
-			} else {
+		if (characters[index] == ' ' || characters[index + 1] == '\0') {
+			if (letterCount != 0 && letterCount == index - (lastSpaceIndex + 1)) {
 				words++;
 			}
-			index++;
+			letterCount = 0;
+			lastSpaceIndex = index;
 		} else if (isLetter(characters[index])) {
-			index++;
-		} else {
-			words--;
-			do {
-				index++;
-			} while (characters[index] != '\0' && characters[index] != ' ');
+			letterCount++;
 		}
+		index++;
 	}
-	words++;
+
 	return words;
 }
 // Test for Questions 1 to 8
@@ -442,7 +438,10 @@ int main()
 	}
 
 	std::cout << "Word counter" << std::endl;
-	char characters[] = {'H', 'e', 'l', 'l', 'o', ' ', ' ', 'W', 'o', 'r', 'l', 'd', ' ', '1', '2', '3', ' ', 'I', ' ', 'a', 'm', ' ', 'h', 'e', 'r', 'e', '\0'};
+	char characters[] = {
+		' ', ' ', 'H', 'e', 'l', 'l', 'o', ' ', ' ', 'W', 'o', 'r', 'l', 'd', ' ', '1', '2', '3', ' ', 'I', ' ', 'a',
+		'm', ' ', 'h', 'e', 'r', 'e', ' ', ' ', '\0'
+	};
 	int words = wordCounter(characters);
 	std::cout << words << std::endl;
 }
