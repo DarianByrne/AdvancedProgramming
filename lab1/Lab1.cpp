@@ -182,17 +182,25 @@ int frequencyCount(int size, int arr[], int value)
 	}
 	return frequency;
 }
+int contains(int size, int arr[], int value) {
+	for (int index = 0; index < size; index++) {
+		if (arr[index]==value) {
+			return true;
+		}
+	}
+	return false;
+}
 int countDuplicates(int size, int arr[])
 {
 	int arr2[size];
-	copyArraytoArray(size, arr, arr2);
-
 	int duplicates = 0;
 	for (int index = 0; index < size; index++) {
-		for (int repeatIndex = 0; repeatIndex < size; repeatIndex++) {
-			if (index != repeatIndex && arr[index] == arr2[repeatIndex]) {
-				duplicates++;
-				arr2[repeatIndex] = 0;
+		for (int repeatIndex = index; repeatIndex < size; repeatIndex++) {
+			if (index != repeatIndex && arr[index] == arr[repeatIndex]) {
+				if (!contains(duplicates, arr2, arr[index])) {
+					arr2[duplicates] = arr[index];
+					duplicates++;
+				}
 			}
 		}
 	}
@@ -366,8 +374,8 @@ int main()
 		std::cout << "no" << std::endl;
 	}
 	std::cout << "5 chars to int" << std::endl;
-	int convertedInt = input5CharsConvertToInt();
-	std::cout << convertedInt << std::endl;
+	// int convertedInt = input5CharsConvertToInt();
+	// std::cout << convertedInt << std::endl;
 
 	std::cout << "Triangles" << std::endl;
 	drawRightAngledTriangle();
