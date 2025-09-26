@@ -27,7 +27,16 @@ int ReplaceLargestValue(int array[4][6])
 //Count all zero values and replace them with - 1. Return the count of zeros.
 int CountAndReplaceZeros(int array[4][6])
 {
-	return 0;
+	int count = 0;
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column < 6; column++) {
+			if (array[row][column] == 0) {
+				array[row][column] = -1;
+				count++;
+			}
+		}
+	}
+	return count;
 }
 
 //Find any horizontal sequence of 3 consecutive cells matching the given pattern.Replace with - 1 and return matches found.
@@ -115,7 +124,11 @@ int main()
 	PrintArray(array);
 
 	std::cout << "Replace largest value" << std::endl;
-	ReplaceLargestValue(array);
+	std::cout << "Replaced largest " << ReplaceLargestValue(array) << std::endl;
+	PrintArray(array);
+
+	std::cout << "Count and replace zeros" << std::endl;
+	std::cout << "Counted " << CountAndReplaceZeros(array) << std::endl;
 	PrintArray(array);
 	int score = ReplaceWithMinusOne(array);
 
