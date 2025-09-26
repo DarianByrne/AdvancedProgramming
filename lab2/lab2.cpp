@@ -82,7 +82,30 @@ int FindColumnSum(int array[4][6], int col)
 //Replace all border elements(first / last row, first / last column) with - 1. Return count replaced.
 int ReplaceBorder(int array[4][6])
 {
-	return 0;
+	int replaced = 0;
+	for (int column = 0; column < 6; column++) {
+		if (array[0][column] != -1) {
+			array[0][column] = -1;
+			replaced++;
+		}
+		if (array[3][column] != -1) {
+			array[3][column] = -1;
+			replaced++;
+		}
+	}
+
+	for (int row = 0; row < 4; row++) {
+		if (array[row][0] != -1) {
+			array[row][0] = -1;
+			replaced++;
+		}
+		if (array[row][5] != -1) {
+			array[row][5] = -1;
+			replaced++;
+		}
+	}
+
+	return replaced;
 }
 
 //Count how many different unique values exist in the array(ignore 0 and -1).
@@ -197,6 +220,18 @@ int main()
 		std::cout << "Find column sum 2" << std::endl;
 		PrintArray(array);
 		std::cout << "Sum " << FindColumnSum(array, 2) << std::endl;
+		PrintArray(array);
+	}
+
+	{
+		int array[4][6] = { {0,0,3,1,3,4},
+						  {0,0,2,3,4,3},
+						  {0,0,1,3,3,2},
+						  {-1,0,1,1,1,1} };
+
+		std::cout << "Replace Border" << std::endl;
+		PrintArray(array);
+		std::cout << "Replaced " << ReplaceBorder(array) << std::endl;
 		PrintArray(array);
 	}
 
