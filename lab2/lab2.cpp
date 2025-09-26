@@ -115,30 +115,41 @@ void FindAllVariablesInScope(char variables[1000], char code[1000], int lineNumb
 // add your tests here.
 int main()
 {
-	//example of calling the functions
+	{
+		//example of calling the functions
 
-	int array[4][6] = { {0,0,3,1,3,4},
-					   {0,0,2,3,4,3},
-					   {0,0,1,3,3,2},
-					   {0,0,1,1,1,1} };
-	PrintArray(array);
+		int array[4][6] = { {0,0,3,1,3,4},
+						   {0,0,2,3,4,3},
+						   {0,0,1,3,3,2},
+						   {0,0,1,1,1,1} };
+		PrintArray(array);
 
-	std::cout << "Replace largest value" << std::endl;
-	std::cout << "Replaced largest " << ReplaceLargestValue(array) << std::endl;
-	PrintArray(array);
+		std::cout << "Replace largest value" << std::endl;
+		std::cout << "Replaced largest " << ReplaceLargestValue(array) << std::endl;
+		PrintArray(array);
+	}
 
-	std::cout << "Count and replace zeros" << std::endl;
-	std::cout << "Counted " << CountAndReplaceZeros(array) << std::endl;
-	PrintArray(array);
-	int score = ReplaceWithMinusOne(array);
+	{
+		int array[4][6] = { {0,0,3,1,3,4},
+						  {0,0,2,3,4,3},
+						  {0,0,1,3,3,2},
+						  {0,0,1,1,1,1} };
+		PrintArray(array);
 
-	FallDownAndReplace(array);
-	char code[1000] = "";
+		std::cout << "Count and replace zeros" << std::endl;
+		std::cout << "Counted " << CountAndReplaceZeros(array) << std::endl;
+		PrintArray(array);
+	}
 
-	char variables[1000] = "";
-
-	FindAllVariables(variables, code);
-	FindAllVariablesInScope(variables, code, 12);
+	// int score = ReplaceWithMinusOne(array);
+	//
+	// FallDownAndReplace(array);
+	// char code[1000] = "";
+	//
+	// char variables[1000] = "";
+	//
+	// FindAllVariables(variables, code);
+	// FindAllVariablesInScope(variables, code, 12);
 
 
 }
