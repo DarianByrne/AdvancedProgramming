@@ -43,7 +43,18 @@ int CountAndReplaceZeros(int array[4][6])
 
 int ReplaceRowPattern(int array[4][6], int pattern[3])
 {
-	return 0;
+	int matches = 0;
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column <= 6-3; column++) {
+			if (array[row][column] == pattern[0] && array[row][column+1] == pattern[1] && array[row][column+2] == pattern[2]) {
+				array[row][column] = -1;
+				array[row][column+1] = -1;
+				array[row][column+2] = -1;
+				matches++;
+			}
+		}
+	}
+	return matches;
 }
 //Swap two specified rows in the array.
 void SwapRows(int array[4][6], int row1, int row2)
@@ -122,9 +133,9 @@ int main()
 						   {0,0,2,3,4,3},
 						   {0,0,1,3,3,2},
 						   {0,0,1,1,1,1} };
-		PrintArray(array);
 
 		std::cout << "Replace largest value" << std::endl;
+		PrintArray(array);
 		std::cout << "Replaced largest " << ReplaceLargestValue(array) << std::endl;
 		PrintArray(array);
 	}
@@ -134,10 +145,23 @@ int main()
 						  {0,0,2,3,4,3},
 						  {0,0,1,3,3,2},
 						  {0,0,1,1,1,1} };
-		PrintArray(array);
 
 		std::cout << "Count and replace zeros" << std::endl;
+		PrintArray(array);
 		std::cout << "Counted " << CountAndReplaceZeros(array) << std::endl;
+		PrintArray(array);
+	}
+
+	{
+		int array[4][6] = { {0,0,3,1,3,4},
+						  {0,0,2,3,4,3},
+						  {0,0,1,3,3,2},
+						  {0,0,1,1,1,1} };
+
+		std::cout << "Replace row pattern 3, 4, 3" << std::endl;
+		PrintArray(array);
+		int pattern[3] = {3,4,3};
+		std::cout << "Matched " << ReplaceRowPattern(array, pattern) << std::endl;
 		PrintArray(array);
 	}
 
