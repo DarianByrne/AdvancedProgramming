@@ -6,7 +6,22 @@
 //Find the largest value in the entire array and replace all occurrences with - 1. Return the largest value found.
 int ReplaceLargestValue(int array[4][6])
 {
-	return 0;
+	int largest = array[0][0];
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column < 6; column++) {
+			if (array[row][column] > largest) {
+				largest = array[row][column];
+			}
+		}
+	}
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column < 6; column++) {
+			if (array[row][column] == largest) {
+				array[row][column] = -1;
+			}
+		}
+	}
+	return largest;
 }
 
 //Count all zero values and replace them with - 1. Return the count of zeros.
@@ -73,7 +88,12 @@ void FallDownAndReplace(int array[4][6])
 }
 void PrintArray(int array[4][6])
 {
-
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column < 6; column++) {
+			std::cout << array[row][column] << " ";
+		}
+		std::cout << std::endl;
+	}
 }
 void FindAllVariables(char variables[1000], char code[1000])
 {
@@ -92,6 +112,10 @@ int main()
 					   {0,0,2,3,4,3},
 					   {0,0,1,3,3,2},
 					   {0,0,1,1,1,1} };
+	PrintArray(array);
+
+	std::cout << "Replace largest value" << std::endl;
+	ReplaceLargestValue(array);
 	PrintArray(array);
 	int score = ReplaceWithMinusOne(array);
 
