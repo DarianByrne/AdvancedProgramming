@@ -69,7 +69,13 @@ void SwapRows(int array[4][6], int row1, int row2)
 //Calculate and return the sum of all values in specified column(ignore - 1 values).
 int FindColumnSum(int array[4][6], int col)
 {
-	return 0;
+	int sum = 0;
+	for (int row = 0; row < 4; row++) {
+		if (array[row][col] != -1) {
+			sum += array[row][col];
+		}
+	}
+	return sum;
 }
 
 
@@ -179,6 +185,18 @@ int main()
 		PrintArray(array);
 		SwapRows(array, 0, 1);
 		std::cout << "Swapped " << std::endl;
+		PrintArray(array);
+	}
+
+	{
+		int array[4][6] = { {0,0,3,1,3,4},
+						  {0,0,2,3,4,3},
+						  {0,0,-1,3,3,2},
+						  {0,0,1,1,1,1} };
+
+		std::cout << "Find column sum 2" << std::endl;
+		PrintArray(array);
+		std::cout << "Sum " << FindColumnSum(array, 2) << std::endl;
 		PrintArray(array);
 	}
 
