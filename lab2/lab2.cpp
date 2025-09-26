@@ -59,7 +59,11 @@ int ReplaceRowPattern(int array[4][6], int pattern[3])
 //Swap two specified rows in the array.
 void SwapRows(int array[4][6], int row1, int row2)
 {
-
+	for (int column = 0; column < 6; column++) {
+		int temp = array[row1][column];
+		array[row1][column] = array[row2][column];
+		array[row2][column] = temp;
+	}
 }
 
 //Calculate and return the sum of all values in specified column(ignore - 1 values).
@@ -162,6 +166,19 @@ int main()
 		PrintArray(array);
 		int pattern[3] = {3,4,3};
 		std::cout << "Matched " << ReplaceRowPattern(array, pattern) << std::endl;
+		PrintArray(array);
+	}
+
+	{
+		int array[4][6] = { {0,0,3,1,3,4},
+						  {0,0,2,3,4,3},
+						  {0,0,1,3,3,2},
+						  {0,0,1,1,1,1} };
+
+		std::cout << "Swap rows 0, 1" << std::endl;
+		PrintArray(array);
+		SwapRows(array, 0, 1);
+		std::cout << "Swapped " << std::endl;
 		PrintArray(array);
 	}
 
