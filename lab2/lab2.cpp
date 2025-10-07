@@ -183,7 +183,13 @@ int FindMostFrequent(int array[4][6])
 //Shift all elements one position to the right.Last column moves to first column.
 void ShiftArrayRight(int array[4][6])
 {
-
+	for (int row = 0; row < 4; row++) {
+		int temp = array[row][6 - 1];
+		for (int column = 6 - 1; column > 0; column--) {
+			array[row][column] = array[row][column - 1];
+		}
+		array[row][0] = temp;
+	}
 }
 
 int ReplaceWithMinusOne(int array[4][6])
@@ -324,6 +330,19 @@ int main()
 		std::cout << "Find Most Frequent" << std::endl;
 		PrintArray(array);
 		std::cout << "Most frequent " << FindMostFrequent(array) << std::endl;
+	}
+
+	{
+		int array[4][6] = { {0,0,3,1,3,4},
+						   {0,0,2,3,4,3},
+						   {0,0,1,3,3,2},
+						   {0,0,1,1,1,1} };
+
+		std::cout << "Shift Array Right" << std::endl;
+		PrintArray(array);
+		ShiftArrayRight(array);
+		std::cout << "Shifted Right " << std::endl;
+		PrintArray(array);
 	}
 
 	// int score = ReplaceWithMinusOne(array);
