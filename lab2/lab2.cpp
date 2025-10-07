@@ -148,10 +148,36 @@ void ReverseArrayRows(int array[4][6])
 	}
 }
 
+int frequencyCount(int array[4][6], int value)
+{
+	int frequency = 0;
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column < 6; column++) {
+			if (array[row][column] == value) {
+				frequency++;
+			}
+		}
+	}
+	return frequency;
+}
 //Find and return the value that appears most frequently(ignore 0 and -1).
 int FindMostFrequent(int array[4][6])
 {
-	return 0;
+	int highestFrequency = 0;
+	int mostFrequent = 0;
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column < 6; column++) {
+			int current = array[row][column];
+			if (current != 0 && current != -1) {
+				int freq = frequencyCount(array, current);
+				if (freq > highestFrequency) {
+					highestFrequency = freq;
+					mostFrequent = current;
+				}
+			}
+		}
+	}
+	return mostFrequent;
 }
 
 //Shift all elements one position to the right.Last column moves to first column.
@@ -287,6 +313,17 @@ int main()
 		ReverseArrayRows(array);
 		std::cout << "Reversed " << std::endl;
 		PrintArray(array);
+	}
+
+	{
+		int array[4][6] = { {0,0,3,1,3,4},
+						   {0,0,2,3,4,3},
+						   {0,0,1,3,3,2},
+						   {0,0,1,1,1,1} };
+
+		std::cout << "Find Most Frequent" << std::endl;
+		PrintArray(array);
+		std::cout << "Most frequent " << FindMostFrequent(array) << std::endl;
 	}
 
 	// int score = ReplaceWithMinusOne(array);
