@@ -139,7 +139,13 @@ int CountUniqueValues(int array[4][6])
 //Reverse each row of the array(first element becomes last, etc.).
 void ReverseArrayRows(int array[4][6])
 {
-
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column < 3; column++) {
+			int temp = array[row][column];
+			array[row][column] = array[row][6 - 1 - column];
+			array[row][6 - 1 - column] = temp;
+		}
+	}
 }
 
 //Find and return the value that appears most frequently(ignore 0 and -1).
@@ -267,6 +273,19 @@ int main()
 		std::cout << "Count Unique Values" << std::endl;
 		PrintArray(array);
 		std::cout << "Uniques " << CountUniqueValues(array) << std::endl;
+		PrintArray(array);
+	}
+
+	{
+		int array[4][6] = { {0,0,3,1,3,4},
+						   {0,0,2,3,4,3},
+						   {0,0,1,3,3,2},
+						   {0,0,1,1,1,1} };
+
+		std::cout << "Reverse Array Rows" << std::endl;
+		PrintArray(array);
+		ReverseArrayRows(array);
+		std::cout << "Reversed " << std::endl;
 		PrintArray(array);
 	}
 
