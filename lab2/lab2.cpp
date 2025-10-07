@@ -108,10 +108,33 @@ int ReplaceBorder(int array[4][6])
 	return replaced;
 }
 
+bool CountUniqueValues_inner(int array[4][6], int inrow, int incol) {
+	int value = array[inrow][incol];
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column < 6; column++) {
+			int current = array[row][column];
+			bool isSame = inrow == row && incol == column;
+			if (!isSame && current == value) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
 //Count how many different unique values exist in the array(ignore 0 and -1).
 int CountUniqueValues(int array[4][6])
 {
-	return 0;
+	int uniques = 0;
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column < 6; column++) {
+			if (array[row][column] != 0 && array[row][column] != -1) {
+				if (CountUniqueValues_inner(array, row, column)) {
+					uniques++;
+				}
+			}
+		}
+	}
+	return uniques;
 }
 //Reverse each row of the array(first element becomes last, etc.).
 void ReverseArrayRows(int array[4][6])
@@ -232,6 +255,18 @@ int main()
 		std::cout << "Replace Border" << std::endl;
 		PrintArray(array);
 		std::cout << "Replaced " << ReplaceBorder(array) << std::endl;
+		PrintArray(array);
+	}
+
+	{
+		int array[4][6] = { {0,0,5,4,3,2},
+						   {0,0,1,1,1,1},
+						   {0,0,1,1,1,1},
+						   {0,0,1,1,1,-1} };
+
+		std::cout << "Count Unique Values" << std::endl;
+		PrintArray(array);
+		std::cout << "Uniques " << CountUniqueValues(array) << std::endl;
 		PrintArray(array);
 	}
 
