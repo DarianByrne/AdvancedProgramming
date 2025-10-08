@@ -192,9 +192,67 @@ void ShiftArrayRight(int array[4][6])
 	}
 }
 
+int ReplaceWithMinusOne_inner(int array[4][6], int inrow, int incol) {
+	int score = 0;
+
+	// check row for a cluster
+	int count = 1;
+	int firstMatch = 0;
+	for (int column = incol; column < 6; column++) {
+		if (column == 0) { continue; } // skip first column because there is no previous column to compare with
+		int current = array[inrow][column];
+		int previous = array[inrow][column - 1];
+		bool inRange = current >= 1 && current <= 4;
+		if (inRange && current == previous) {
+			count++;
+		} else {
+			if (count >= 3) { break; } // 3 or larger cluster so stop looking
+			firstMatch = column;
+			count = 1;
+		}
+	}
+	if (count >= 3) {
+		for (int column = firstMatch; column < firstMatch + count; column++) {
+			score += array[inrow][column];
+			array[inrow][column] = -1;
+		}
+		return score;
+	}
+
+	// check column for a cluster
+	count = 1;
+	firstMatch = 0;
+	for (int row = inrow; row < 4; row++) {
+		if (row == 0) { continue; } // skip first row because there is no previous row to compare with
+		int current = array[row][incol];
+		int previous = array[row - 1][incol];
+		bool inRange = current >= 1 && current <= 4;
+		if (inRange && current == previous) {
+			count++;
+		} else {
+			if (count >= 3) { break; } // 3 or larger cluster so stop looking
+			firstMatch = row;
+			count = 1;
+		}
+	}
+	if (count >= 3) {
+		for (int row = firstMatch; row < firstMatch + count; row++) {
+			score += array[row][incol];
+			array[row][incol] = -1;
+		}
+	}
+
+	return score;
+}
 int ReplaceWithMinusOne(int array[4][6])
 {
-	return 0;
+	int score = 0;
+	for (int row = 0; row < 4 && score <= 0; row++) {
+		for (int column = 0; column < 6 && score <= 0; column++) {
+			score = ReplaceWithMinusOne_inner(array, row, column);
+		}
+	}
+	return score;
 }
 void FallDownAndReplace(int array[4][6])
 {
@@ -342,6 +400,18 @@ int main()
 		PrintArray(array);
 		ShiftArrayRight(array);
 		std::cout << "Shifted Right " << std::endl;
+		PrintArray(array);
+	}
+
+	{
+		int array[4][6] = { {0,0,3,1,3,4},
+						   {0,0,2,3,4,3},
+						   {0,0,1,3,3,2},
+						   {0,0,2,2,2,2} };
+
+		std::cout << "Replace With Minus One" << std::endl;
+		PrintArray(array);
+		std::cout << "Score " << ReplaceWithMinusOne(array) << std::endl;
 		PrintArray(array);
 	}
 
