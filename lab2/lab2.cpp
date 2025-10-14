@@ -254,9 +254,22 @@ int ReplaceWithMinusOne(int array[4][6])
 	}
 	return score;
 }
+
+void FallDownAndReplace_inner(int array[4][6], int inrow, int incol) {
+	if (array[inrow][incol] == -1) {
+		for (int row = inrow; row > 0; row--) {
+			array[row][incol] = array[row - 1][incol];
+		}
+		array[0][incol] = -2;
+	}
+}
 void FallDownAndReplace(int array[4][6])
 {
-
+	for (int row = 0; row < 4; row++) {
+		for (int column = 0; column < 6; column++) {
+			FallDownAndReplace_inner(array, row, column);
+		}
+	}
 }
 void PrintArray(int array[4][6])
 {
@@ -412,6 +425,19 @@ int main()
 		std::cout << "Replace With Minus One" << std::endl;
 		PrintArray(array);
 		std::cout << "Score " << ReplaceWithMinusOne(array) << std::endl;
+		PrintArray(array);
+	}
+
+	{
+		int array[4][6] = { {0,0,3,3,4,3},
+						   {0,0,-1,3,4,3},
+						   {0,0,-1,3,3,2},
+						   {0,0,-1,2,3,3} };
+
+		std::cout << "Fall Down And Replace" << std::endl;
+		PrintArray(array);
+		FallDownAndReplace(array);
+		std::cout << "Replaced " << std::endl;
 		PrintArray(array);
 	}
 
